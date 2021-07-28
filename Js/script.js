@@ -1,6 +1,12 @@
 "use strict";
-const namberOfFilms = +prompt("Сколько фильмов вы посмотрели?", "");
-
+let namberOfFilms;
+function start() {
+	namberOfFilms = +prompt("Сколько фильмов вы посмотрели?", "");
+	while (namberOfFilms == '' || namberOfFilms == null || isNaN(namberOfFilms)) {
+		namberOfFilms = +prompt("Сколько фильмов вы посмотрели?", "");
+	};
+};
+start();
 const personalMovieDB = {
 	count: namberOfFilms,
 	movies: {},
@@ -9,7 +15,8 @@ const personalMovieDB = {
 	privat: false
 };
 
-/* for (let i = 0; i < 2; i++) {
+function remeberMyFilms() {
+	/* for (let i = 0; i < 2; i++) {
 	const a = prompt('Один из просмотренных фильмов?', ''),
 			b = prompt("Насколько оцените его?", "");
 	if (a != null && b != null && a !='' && a.length < 50) {
@@ -30,6 +37,7 @@ console.log('Error');
 i--;
 	} */
 
+
 do {
 	const a = prompt('Один из просмотренных фильмов?', ''),
 		b = prompt("Насколько оцените его?", "");
@@ -41,18 +49,44 @@ do {
 			}
 }
 while (i < 2);
-console.log(personalMovieDB);
-if (personalMovieDB.count < 10) {
-	console.log('Просмотренно довольно мало фильмов');
-} else if (personalMovieDB.count >= 10 && personalMovieDB.count <= 30) {
-	console.log('Вы класический зритель');
-} else if (personalMovieDB.count > 30) {
-	console.log('Вы киноман');
-} else {console.log ('Произошла ошибка');
-		
 };
 
+//remeberMyFilms();
 
+function detectPersonalLevel() {
+	 console.log(personalMovieDB);
+	if (personalMovieDB.count < 10) {
+		console.log('Просмотренно довольно мало фильмов');
+	} else if (personalMovieDB.count >= 10 && personalMovieDB.count <= 30) {
+		console.log('Вы класический зритель');
+	} else if (personalMovieDB.count > 30) {
+		console.log('Вы киноман');
+	} else {
+		console.log('Произошла ошибка');
+	}
+			
+	
+}
+
+//detectPersonalLevel();
+
+function showMyDB(hidden) {
+	if (!hidden) {
+		console.log(personalMovieDB);
+	}
+}
+//showMyDB(personalMovieDB.privat);
+
+function writeYourGenres() {
+		for (let i = 0; i < 3; i++){
+		personalMovieDB.genres[i] = prompt(`Ваш любимый жанр под номером ${i+1}`);
+
+	}
+}
+
+
+writeYourGenres();
+console.log(personalMovieDB);
 
 
 
